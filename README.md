@@ -15,11 +15,15 @@ Una vez instalado NodeJS y Angular, basta con clonar el proyecto y dirigirnos ha
 
 `cd /Proyecto/Angular-Calificaciones`
 
+Una vez en la ubicación, instalamos los modulos requeridos:
+
+`npm install`
+
 posteriormente ingresamos el siguiente código:
 
 `ng serve --open`
 
-Esto abrirá una ventana en el navegador mediante el cual podremos observar el programa en funcionamiento.
+Si todo salió bien, esto abrirá una ventana en el navegador mediante el cual podremos observar el programa en funcionamiento.
 
 ## Librerías utilizadas
 

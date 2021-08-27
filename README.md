@@ -13,11 +13,11 @@ El proyecto requiere muy poco para funcionar, sin embargo, desconozco un poco qu
 
 Una vez instalado NodeJS y Angular, basta con clonar el proyecto y dirigirnos hacia la ubicación de la carpeta raíz mediante Linea de Comandos.
 
-´ cd /Proyecto/Angular-Calificaciones
+`cd /Proyecto/Angular-Calificaciones`
 
 posteriormente ingresamos el siguiente código:
 
-´ ng serve --open
+`ng serve --open`
 
 Esto abrirá una ventana en el navegador mediante el cual podremos observar el programa en funcionamiento.
 

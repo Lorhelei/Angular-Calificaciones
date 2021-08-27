@@ -4,7 +4,11 @@
 
 El proyecto requiere muy poco para funcionar, sin embargo, desconozco un poco que partes del proyecto son transferibles dentro del proyecto mismo sin necesitar la interacción del usuario. Mínimamente se requiere:
 
-- Archivo Excel con plantilla | Nombres | Apellido Materno | Apellido Paterno | Fecha de Nacimiento | Grado | Grupo | Calificación |
+- Archivo Excel con plantilla 
+  | Nombres | Apellido Materno | Apellido Paterno | Fecha de Nacimiento | Grado | Grupo | Calificación |
+  |---------|------------------|------------------|---------------------|-------|-------|--------------|
+  |Juan José| Lopez            | Lopez            | dd/MM/yyyy          | 1     | A     | 10
+  
 - Angular 12.x
 - NodeJS 14.x
 - Internet (Para la conexión hacia OpenWeather)

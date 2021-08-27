@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-let serviceUrl: string = "http://api.openweathermap.org/data/2.5/weather?"
+let serviceUrl: string = "https://api.openweathermap.org/data/2.5/weather?"
 let apiKey: string = "400f53912be3a2f709b996c1ddd175f8"
 
 @Injectable({
@@ -20,6 +20,6 @@ export class ClimaService {
    }
 
    GetIconUrl(icon: String) {
-     return 'http://openweathermap.org/img/w/' + icon + ".png"
+     return 'https://openweathermap.org/img/w/' + icon + ".png"
    }
 }

@@ -1,9 +1,16 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Alumnos } from './models/alumnos.model';
+import { Clima } from "./models/clima.model";
 import { ExcelService } from './services/excel.service';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { ClimaService } from './services/clima.service'
+
+interface chartDataSource{
+  chart: {}
+  data: [ {label: string, value: string} | null ]
+}
 
 @Component({
   selector: 'app-root',
@@ -11,8 +18,14 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'Simulador de Estudiantes';
+
+  clima: Clima = new Clima();
+  city: string = "Hermosillo";
+  icono: string = "";
+  
+  chartSource: chartDataSource = {chart: {}, data:[null]} ; 
 
   @ViewChild(MatPaginator, {static: false})
     set paginator(value: MatPaginator) {
@@ -26,6 +39,7 @@ export class AppComponent {
         this.dataSource.sort = value;
       }
   }
+  
   alfabeto: string = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
   claves: string[] = [];
   ImportedData: Alumnos[] = [];
@@ -46,9 +60,33 @@ export class AppComponent {
     'clave',
   ]
 
+
+
   desplazamiento = 0;
 
-  constructor(private excelSrv: ExcelService){
+  constructor(private excelSrv: ExcelService, private climaService: ClimaService){
+    this.chartSource.chart = {
+      caption:"Calificaciones",
+      xAxisName:"Alumnos",
+      yAxisName:"Calificacion",
+      theme: "fusion"
+    }
+  }
+
+  ngAfterViewInit(){
+    this.climaService.LoadWeather(this.city).subscribe(data => {
+
+        var main = data as any
+
+        this.clima.city = main["name"]
+        this.clima.temperature = main["main"]["temp"]
+        this.clima.conditions = main["weather"][0]["description"]
+        this.clima.icon = main["weather"][0]["icon"]
+        this.icono = this.climaService.GetIconUrl(this.clima.icon)
+
+    });
+
+
   }
 
   OnSliderChange(event: any){
@@ -103,6 +141,7 @@ export class AppComponent {
         obj["clave"] = this.SetClave(obj);
         this.claves[count] = obj["clave"];
         this.SetAnalitics(obj);     
+        this.setDataChart(obj["aPaterno"], obj["aMaterno"], obj["calificacion"]);
         count++;
         return <Alumnos>obj;
       })
@@ -159,6 +198,12 @@ export class AppComponent {
         clave = shift + edad;
 
         return clave;
+  }
+
+  setDataChart(apellido: string, nombres: string, calificacion: string){
+    var data;
+    data = {label: apellido + ' ' + nombres, value: calificacion};
+    this.chartSource.data.push(data);
   }
   
   OnFileLoaded()

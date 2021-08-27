@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "angular-fusioncharts": "^3.0.4",
+    "fusioncharts": "^3.17.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "xlsx": "^0.17.1",

@@ -1,4 +1,13 @@
 <!-- <h1>{{title}}</h1> -->
+<mat-toolbar>
+  <span>{{title}}</span>
+  <span class="spacer"></span>
+  <img [src]="icono" />
+  <span>
+    {{clima.city}} - {{clima.temperature}} C° {{clima.conditions}}
+  </span>
+</mat-toolbar>
+
 <div [hidden]="fileLoaded">
   <div class="dropzone" appDrop (onFileDropped)="OnFileChange($event)">
     <div class="text-wrapper">
@@ -95,8 +104,13 @@
       Promedio: {{promedio}}
     </mat-card>
 
-    <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons
+      aria-label="Selecciona la pagina de Estudiantes">
 
     </mat-paginator>
+    <mat-card class="mat-elevation-z2">
+      <fusioncharts width="100%" height="500" type="Column2D" dataFormat="JSON" [dataSource]="chartSource">
+      </fusioncharts>
+    </mat-card>
   </mat-card>
 </div>
